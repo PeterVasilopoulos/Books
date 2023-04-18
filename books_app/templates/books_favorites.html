@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book's Favorites</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+
+    <!-- Content Block -->
+    <div id="authors-content">
+        <!-- Left Content -->
+        <div id="authors-left">
+            <h2>Title: {{results.title}}</h2>
+            <!-- Favorited By List -->
+            <p>Favorited By:</p>
+            <ul>
+                {% for row in results.author_favs %}
+                    <li>{{row.name}}</li>
+                {% endfor %}
+            </ul>
+            <!-- Home Button -->
+            <a href="/">Home</a>
+        </div>
+
+        <!-- Right Content -->
+        <div id="authors-right">
+            <h2>Add Book's Favorite</h2>
+            <!-- Authors List -->
+            <form action="/add_favorite_author/{{results.id}}" method="POST">
+                <!-- Book Selection -->
+                <label>Book:</label>
+                <select name="author_id" id="">
+                    {% for author in authors %}
+                        <option value="{{author.id}}">{{author.name}}</option>
+                    {% endfor %}
+                </select>
+                <!-- Hidden Input for Author ID -->
+                <input type="hidden" name="book_id" value="{{results.id}}">
+                <br>
+                <!-- Submit Button -->
+                <button>Add</button>
+            </form>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>

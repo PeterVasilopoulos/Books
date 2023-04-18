@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    
+    <!-- Content Block -->
+    <div id="authors-content">
+        <!-- Left Content -->
+        <div id="authors-left">
+            <h2>New Book</h2>
+            <!-- Authors Form -->
+            <div id="authors-form">
+                <form action="/create_book" method="POST">
+                    <label>Title:</label>
+                    <input type="text" name="title"><br>
+                    <label>Number of Pages:</label>
+                    <input type="number" name="num_of_pages"><br>
+                    <button>Create</button>
+                </form>
+            </div>
+            <!-- Home Button -->
+            <a href="/">Home</a>
+        </div>
+
+        <!-- Right Content -->
+        <div id="authors-right">
+            <h2>All Books</h2>
+            <!-- Authors List -->
+            <div id="authors-list">
+                <ul id="authors-ul">
+                    {% for book in books %}
+                        <li><a href="/books/{{book.id}}">{{book.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            
+        </div>
+    </div>
+
+</body>
+</html>
